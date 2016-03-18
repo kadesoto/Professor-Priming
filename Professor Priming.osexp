@@ -1,0 +1,298 @@
+---
+API: 2
+OpenSesame: 3.0.5
+Platform: nt
+---
+set width 1024
+set uniform_coordinates "yes"
+set title "New experiment"
+set subject_parity "even"
+set subject_nr 0
+set start "experiment"
+set sampler_backend "legacy"
+set mouse_backend "legacy"
+set keyboard_backend "legacy"
+set height 768
+set foreground "white"
+set font_size 18
+set font_italic "no"
+set font_family "mono"
+set font_bold "no"
+set description "Default description"
+set coordinates "uniform"
+set compensation 0
+set color_backend "legacy"
+set clock_backend "legacy"
+set canvas_backend "legacy"
+set bidi "no"
+set background "black"
+
+define sequence conditions
+	set flush_keyboard "yes"
+	set description "Runs a number of items in sequence"
+	run profProcedure "[condition] = 1"
+	run hoolProcedure "[condition] = 2"
+	run demographics always
+	run quiz always
+
+define form_text_input demoAge
+	set timeout "infinite"
+	set spacing 10
+	set rows "1;1;6"
+	set only_render "no"
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Title"
+	set form_question "What is your age?"
+	set description "A simple text input form"
+	set cols 1
+	set _theme "gray"
+	widget 0 0 1 1 label text="[form_title]"
+	widget 0 1 1 1 label center=no text="[form_question]"
+	widget 0 2 1 1 text_input focus=yes return_accepts=yes stub="" var="[form_var]"
+
+
+define form_text_display demoInstructions
+	set timeout "infinite"
+	set spacing 10
+	set rows "1;4;1"
+	set only_render "no"
+	set ok_text "Ok"
+	set margins "50;50;50;50"
+	set form_title "<span size=24>Title</span>"
+	set form_text "We now will ask you several questions about yourself."
+	set description "A simple text display form"
+	set cols "1;1;1"
+	set _theme "gray"
+	widget 0 0 3 1 label text="[form_title]"
+	widget 0 1 3 1 label center=no text="[form_text]"
+	widget 1 2 1 1 button text="[ok_text]"
+
+
+define form_multiple_choice demoLang
+	set timeout "infinite"
+	set spacing 10
+	set question "What is your native language?"
+	__options__
+	English
+	other
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "no"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice demoSex
+	set timeout "infinite"
+	set spacing 10
+	set question "What is your sex?"
+	__options__
+	male
+	female
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "no"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice demoYear
+	set timeout "infinite"
+	set spacing 10
+	set question "What is your year of study?"
+	__options__
+	1st year
+	2nd year
+	3rd year
+	4th year or higher
+	not a student
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "no"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define sequence demographics
+	set flush_keyboard "yes"
+	set description "Runs a number of items in sequence"
+	run demoInstructions always
+	run demoSex always
+	run demoAge always
+	run demoLang always
+	run demoYear always
+
+define sequence experiment
+	set flush_keyboard "yes"
+	set description "Runs a number of items in sequence"
+	run setup always
+	run conditions always
+
+define form_text_input hoolEntry
+	set timeout 5000
+	set spacing 10
+	set rows "1;1;6"
+	set only_render "no"
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Title"
+	set form_question "Enter your response:"
+	set description "A simple text input form"
+	set cols 1
+	set _theme "gray"
+	widget 0 0 1 1 label text="[form_title]"
+	widget 0 1 1 1 label center=no text="[form_question]"
+	widget 0 2 1 1 text_input focus=yes return_accepts=yes stub="" var="[form_var]"
+
+
+define form_text_display hoolInstructions
+	set timeout "infinite"
+	set spacing 10
+	set rows "1;4;1"
+	set only_render "no"
+	set ok_text "Ok"
+	set margins "50;50;50;50"
+	set form_title "<span size=24>Title</span>"
+	set form_text "Imagine that you are a typical soccer hooligan. Hooligans, as a group, tend to be young men who are fanatical sports fans, generally drink a lot in public, say offensive things to passersby, and sometimes provoke fights or destroy property. Take a moment to imagine being a typical soccer hooligan. Think about the following questions: What are you doing in your daily life as a soccer hooligan? What are your typical activities as a soccer hooligan? What are your typical personality characteristics or attributes as a soccer hooligan? What are your typical passions or hobbies as a soccer hooligan? Write your answers to these on the next page in the first person, as if you actually are a soccer hooligan. You will have 5 minutes to complete this task. You must use this time in its entirety. Press OK to continue."
+	set description "A simple text display form"
+	set cols "1;1;1"
+	set _theme "gray"
+	widget 0 0 3 1 label text="[form_title]"
+	widget 0 1 3 1 label center=no text="[form_text]"
+	widget 1 2 1 1 button text="[ok_text]"
+
+
+define form_text_display hoolIntro
+	set timeout "infinite"
+	set spacing 10
+	set rows "1;4;1"
+	set only_render "no"
+	set ok_text "Ok"
+	set margins "50;50;50;50"
+	set form_title "<span size=24>Title</span>"
+	set form_text "During this experiment, you will complete a number of unrelated tasks. In the first task, we want you to imagine that you are a soccer-hooligan. This task will help us develop materials for an upcoming student project in social psychology. Click OK to continue."
+	set description "A simple text display form"
+	set cols "1;1;1"
+	set _theme "gray"
+	widget 0 0 3 1 label text="[form_title]"
+	widget 0 1 3 1 label center=no text="[form_text]"
+	widget 1 2 1 1 button text="[ok_text]"
+
+
+define sequence hoolProcedure
+	set flush_keyboard "yes"
+	set description "Runs a number of items in sequence"
+	run hoolIntro always
+	run hoolInstructions always
+	run hoolEntry always
+
+define form_text_display instructions
+	set timeout "infinite"
+	set spacing 10
+	set rows "1;4;1"
+	set only_render "no"
+	set ok_text "Ok"
+	set margins "50;50;50;50"
+	set form_title "<span size=24>Title</span>"
+	set form_text "The next task if for a study by a cognitive psychology student who is developing a general knowledge scale. The scale will eventually have 5 sub-scales ranging from very easy (1) to very difficult. (5) We’re pilot testing the differences between these sub-scales. You have been assigned to receive [[SUB-SCALE 5]] [printed in a different font to make it appear as if it were inserted]. The task consists of 30 questions about a variety of topics. Take your time to think about each answer and try to do as well as possible."
+	set description "A simple text display form"
+	set cols "1;1;1"
+	set _theme "gray"
+	widget 0 0 3 1 label text="[form_title]"
+	widget 0 1 3 1 label center=no text="[form_text]"
+	widget 1 2 1 1 button text="[ok_text]"
+
+
+define form_base new_form_base
+	set timeout "infinite"
+	set spacing 10
+	set rows "2;2"
+	set only_render "no"
+	set margins "50;50;50;50"
+	set description "A generic form plug-in"
+	set cols "2;2"
+	set _theme "gray"
+
+
+define form_text_input profEntry
+	set timeout 5000
+	set spacing 10
+	set rows "1;1;6"
+	set only_render "no"
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Title"
+	set form_question "Enter your response:"
+	set description "A simple text input form"
+	set cols 1
+	set _theme "gray"
+	widget 0 0 1 1 label text="[form_title]"
+	widget 0 1 1 1 label center=no text="[form_question]"
+	widget 0 2 1 1 text_input focus=yes return_accepts=yes stub="" var="[form_var]"
+
+
+define form_text_display profInstructions
+	set timeout "infinite"
+	set spacing 10
+	set rows "1;4;1"
+	set only_render "no"
+	set ok_text "Ok"
+	set margins "50;50;50;50"
+	set form_title "<span size=24>Title</span>"
+	set form_text "Imagine that you are a typical university professor. Professors, as a group, tend to have completed a doctorate degree, work in colleges or universities, dedicate their time to teaching and research, and try to publish their research in academic journals. Take a moment to imagine being a typical university professor. Think about the following questions: What are you doing in your daily life as a university professor? What are your typical activities as a university professor? What are your typical personality characteristics or attributes as a university professor? What are your typical passions or hobbies as a university professor? Write your answers to these on the next page in the first person, as if you actually are a university professor. You will have 5 minutes to complete this task. You must use this time in its entirety. Click OK to continue."
+	set description "A simple text display form"
+	set cols "1;1;1"
+	set _theme "gray"
+	widget 0 0 3 1 label text="[form_title]"
+	widget 0 1 3 1 label center=no text="[form_text]"
+	widget 1 2 1 1 button text="[ok_text]"
+
+
+define form_text_display profIntro
+	set timeout "infinite"
+	set spacing 10
+	set rows "1;4;1"
+	set only_render "no"
+	set ok_text "Ok"
+	set margins "50;50;50;50"
+	set form_title "<span size=24>Title</span>"
+	set form_text "During this experiment, you will complete a number of unrelated tasks. In the first task, we want you to imagine that you are a university professor. This task will help us develop materials for an upcoming student project in social psychology. Click OK to continue."
+	set description "A simple text display form"
+	set cols "1;1;1"
+	set _theme "gray"
+	widget 0 0 3 1 label text="[form_title]"
+	widget 0 1 3 1 label center=no text="[form_text]"
+	widget 1 2 1 1 button text="[ok_text]"
+
+
+define sequence profProcedure
+	set flush_keyboard "yes"
+	set description "Runs a number of items in sequence"
+	run profIntro always
+	run profInstructions always
+	run profEntry always
+
+define sequence quiz
+	set flush_keyboard "yes"
+	set description "Runs a number of items in sequence"
+	run instructions always
+
+define inline_script setup
+	set description "Executes Python code"
+	___run__
+	import random
+	
+	var.condition = random.randint(1, 2)
+	__end__
+	set _prepare ""
+
