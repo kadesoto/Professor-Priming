@@ -32,8 +32,9 @@ define sequence conditions
 	set description "Runs a number of items in sequence"
 	run profProcedure "[condition] = 1"
 	run hoolProcedure "[condition] = 2"
-	run demographics always
+	run instructions always
 	run quiz always
+	run demographics always
 
 define form_text_input demoAge
 	set timeout "infinite"
@@ -131,6 +132,9 @@ define sequence demographics
 	run demoAge always
 	run demoLang always
 	run demoYear always
+	run task1Recall always
+	run task2Recall always
+	run task2Recall_1 always
 
 define sequence experiment
 	set flush_keyboard "yes"
@@ -204,7 +208,7 @@ define form_text_display instructions
 	set ok_text "Ok"
 	set margins "50;50;50;50"
 	set form_title "<span size=24>Title</span>"
-	set form_text "The next task if for a study by a cognitive psychology student who is developing a general knowledge scale. The scale will eventually have 5 sub-scales ranging from very easy (1) to very difficult. (5) We’re pilot testing the differences between these sub-scales. You have been assigned to receive [[SUB-SCALE 5]] [printed in a different font to make it appear as if it were inserted]. The task consists of 30 questions about a variety of topics. Take your time to think about each answer and try to do as well as possible."
+	set form_text "The next task is for a study by a cognitive psychology student who is developing a general knowledge scale. The scale will eventually have 5 sub-scales ranging from very easy (1) to very difficult. (5) We’re pilot testing the differences between these sub-scales. You have been assigned to receive [[SUB-SCALE 5]]. The task consists of 30 questions about a variety of topics. Take your time to think about each answer and try to do as well as possible."
 	set description "A simple text display form"
 	set cols "1;1;1"
 	set _theme "gray"
@@ -213,16 +217,9 @@ define form_text_display instructions
 	widget 1 2 1 1 button text="[ok_text]"
 
 
-define form_base new_form_base
-	set timeout "infinite"
-	set spacing 10
-	set rows "2;2"
-	set only_render "no"
-	set margins "50;50;50;50"
-	set description "A generic form plug-in"
-	set cols "2;2"
-	set _theme "gray"
-
+define sequence new_sequence
+	set flush_keyboard "yes"
+	set description "Runs a number of items in sequence"
 
 define form_text_input profEntry
 	set timeout 5000
@@ -282,10 +279,613 @@ define sequence profProcedure
 	run profInstructions always
 	run profEntry always
 
+define form_multiple_choice question1
+	set timeout "infinite"
+	set spacing 10
+	set question "1.	Gaborone is the capital of which African country?"
+	__options__
+	a.	Zimbabwe
+	b.	Zaire
+	c.	Uganda
+	d.	Botswana
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question10
+	set timeout "infinite"
+	set spacing 10
+	set question "10.	What breaks when its height is ¾ of its depth?"
+	__options__
+	a.	Iceberg
+	b.	Mountain
+	c.	Pillar 
+	d.	Wave
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question11
+	set timeout "infinite"
+	set spacing 10
+	set question "11.	In meteorology, what name is given to lines of equal atmospheric pressure?"
+	__options__
+	a.	Cyclones
+	b.	Fronts
+	c.	Isotherms
+	d.	Isobars
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question12
+	set timeout "infinite"
+	set spacing 10
+	set question "13.	Which auto manufacturer established Saturn in 1985?"
+	__options__
+	a.	Mitsubishi
+	b.	Chrysler
+	c.	Ford 
+	d.	General Motors
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question13
+	set timeout "infinite"
+	set spacing 10
+	set question "13.	Which auto manufacturer established Saturn in 1985?"
+	__options__
+	a.	Mitsubishi
+	b.	Chrysler
+	c.	Ford 
+	d.	General Motors
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question14
+	set timeout "infinite"
+	set spacing 10
+	set question "14.	What do supplementary angles add up to in degrees?"
+	__options__
+	a.	90
+	b.	120
+	c.	360
+	d.	180
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question15
+	set timeout "infinite"
+	set spacing 10
+	set question "15.	What is the second planet in distance from the sun?"
+	__options__
+	a.	Mars
+	b.	Mercury
+	c.	Saturn
+	d.	Venus
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question16
+	set timeout "infinite"
+	set spacing 10
+	set question "16.	Which leader of the Soviet Union resigned on December 25, 1991?"
+	__options__
+	a.	Boris Yeltsin
+	b.	Nikita Khrushchev
+	c.	Alexander Popov
+	d.	Mikhail Gorbachev
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question17
+	set timeout "infinite"
+	set spacing 10
+	set question "17.	Where do arboreal animals live?"
+	__options__
+	a.	In Deserts
+	b.	In Rivers
+	c.	Underground
+	d.	In Trees
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question18
+	set timeout "infinite"
+	set spacing 10
+	set question "18.	Which computer was the first to beat a reigning chess champion?"
+	__options__
+	a.	Deep Thought
+	b.	King Blue
+	c.	Blue Knight
+	d.	Deep Blue
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question19
+	set timeout "infinite"
+	set spacing 10
+	set question "19.	What is the name of the submerged fringe of a continent?"
+	__options__
+	a.	Continental Rise
+	b.	Continental Slope
+	c.	Continental Abyss
+	d.	Continental Shelf
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question2
+	set timeout "infinite"
+	set spacing 10
+	set question "2.	What is a character encoding scheme used by many computers called?"
+	__options__
+	a.	HTML
+	b.	Morse Code
+	c.	Wordpad
+	d.	ASCII
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question20
+	set timeout "infinite"
+	set spacing 10
+	set question "20.	What type of government ruled Italy during World War II?"
+	__options__
+	a.	Republic
+	b.	Communist
+	c.	Democracy
+	d.	Fascist
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question21
+	set timeout "infinite"
+	set spacing 10
+	set question "21.	Alexander Fleming won the Nobel Prize for the discovery of what?"
+	__options__
+	a.	X Rays
+	b.	South America
+	c.	Stethoscope
+	d.	Penicillin
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question22
+	set timeout "infinite"
+	set spacing 10
+	set question "22.	Which metal can be described as ferrous?"
+	__options__
+	a.	Zimbabwe
+	b.	Zaire
+	c.	Uganda
+	d.	Botswana
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question23
+	set timeout "infinite"
+	set spacing 10
+	__question__
+	23.	Which river is called "Rio Bravo" by Mexicans?
+	__end__
+	__options__
+	a.	Colorado River
+	b.	Rio Rojo
+	c.	Rio Lobos
+	d.	Rio Grande
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question24
+	set timeout "infinite"
+	set spacing 10
+	set question "24.	Where is the uvula located?"
+	__options__
+	a.	In the lungs
+	b.	In the spine
+	c.	In the nose
+	d.	In the throat
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question25
+	set timeout "infinite"
+	set spacing 10
+	set question "25.	What region makes up 75% of Russia?"
+	__options__
+	a.	Belarus
+	b.	Kazakhstan
+	c.	Ukraine
+	d.	Siberia 
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question26
+	set timeout "infinite"
+	set spacing 10
+	set question "26.	Which is the largest planet in the Solar System?"
+	__options__
+	a.	Neptune
+	b.	Mars
+	c.	Saturn
+	d.	Jupiter
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question27
+	set timeout "infinite"
+	set spacing 10
+	__question__
+	27.	Who composed "The Nutcracker?"
+	__end__
+	__options__
+	a.	Mozart
+	b.	Handel
+	c.	Beethoven
+	d.	Tchaikovsky
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question28
+	set timeout "infinite"
+	set spacing 10
+	set question "28.	What does a barometer measure?"
+	__options__
+	a.	Wind Speed
+	b.	Air Temperature
+	c.	Relative Humidity
+	d.	Air Pressure
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question29
+	set timeout "infinite"
+	set spacing 10
+	set question "29.	What is the main structural molecule in hair and nails?"
+	__options__
+	a.	Collagen
+	b.	Elastin
+	c.	Lecithin
+	d.	Keratin
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question3
+	set timeout "infinite"
+	set spacing 10
+	set question "3.	Which is the world’s largest living rodent?"
+	__options__
+	a.	Beaver
+	b.	Coypu
+	c.	Muskrat
+	d.	Capybara
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question30
+	set timeout "infinite"
+	set spacing 10
+	set question "30.	Joan of Arc is a national heroine of which country?"
+	__options__
+	a.	Greece
+	b.	Spain
+	c.	Germany
+	d.	France
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question4
+	set timeout "infinite"
+	set spacing 10
+	set question "4.	Which planet is 92,897,000 miles from the sun?"
+	__options__
+	a.	Pluto
+	b.	Mars
+	c.	Uranus
+	d.	Earth
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question5
+	set timeout "infinite"
+	set spacing 10
+	set question "5.	How many pairs of ribs are in a typical human body?"
+	__options__
+	a.	6
+	b.	8
+	c.	15
+	d.	12
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question6
+	set timeout "infinite"
+	set spacing 10
+	set question "6.	What country did Jawaharlal Nehru lead?"
+	__options__
+	a.	Bangladesh
+	b.	Pakistan
+	c.	Philippines
+	d.	India
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question7
+	set timeout "infinite"
+	set spacing 10
+	set question "7.	How many zeros in a trillion?"
+	__options__
+	a.	9
+	b.	15
+	c.	11
+	d.	12
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question8
+	set timeout "infinite"
+	set spacing 10
+	set question "8.	Which of these people is particularly associated with November 5?"
+	__options__
+	a.	Robin Hood 
+	b.	Dick Turpin
+	c.	Sweeney Todd
+	d.	Guy Fawkes
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice question9
+	set timeout "infinite"
+	set spacing 10
+	set question "9.	What alloy is formed from copper and tin?"
+	__options__
+	a.	Solder
+	b.	Brass
+	c.	Pewter
+	d.	Bronze
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "yes"
+	set advance_immediately "yes"
+	set _theme "gray"
+
 define sequence quiz
 	set flush_keyboard "yes"
 	set description "Runs a number of items in sequence"
-	run instructions always
+	run question1 always
+	run question2 always
+	run question3 always
+	run question4 always
+	run question5 always
+	run question6 always
+	run question7 always
+	run question8 always
+	run question9 always
+	run question10 always
+	run question11 always
+	run question12 always
+	run question13 always
+	run question14 always
+	run question15 always
+	run question16 always
+	run question17 always
+	run question18 always
+	run question19 always
+	run question20 always
+	run question21 always
+	run question22 always
+	run question23 always
+	run question24 always
+	run question25 always
+	run question26 always
+	run question27 always
+	run question28 always
+	run question29 always
+	run question30 always
 
 define inline_script setup
 	set description "Executes Python code"
@@ -295,4 +895,55 @@ define inline_script setup
 	var.condition = random.randint(1, 2)
 	__end__
 	set _prepare ""
+
+define form_text_input task1Recall
+	set timeout "infinite"
+	set spacing 10
+	set rows "1;1;6"
+	set only_render "no"
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Title"
+	set form_question "We will now ask you some questions about the experiment thus far. The first two tasks were described as being pilot projects for student research in different areas of psychology. Please write the area in which the student was working for in Task 1 (the writing task)."
+	set description "A simple text input form"
+	set cols 1
+	set _theme "gray"
+	widget 0 0 1 1 label text="[form_title]"
+	widget 0 1 1 1 label center=no text="[form_question]"
+	widget 0 2 1 1 text_input focus=yes return_accepts=yes stub="" var="[form_var]"
+
+
+define form_text_input task2Recall
+	set timeout "infinite"
+	set spacing 10
+	set rows "1;1;6"
+	set only_render "no"
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Title"
+	set form_question "Please write the area in which the student was working for in Task 2 (the trivia/knowledge task)."
+	set description "A simple text input form"
+	set cols 1
+	set _theme "gray"
+	widget 0 0 1 1 label text="[form_title]"
+	widget 0 1 1 1 label center=no text="[form_question]"
+	widget 0 2 1 1 text_input focus=yes return_accepts=yes stub="" var="[form_var]"
+
+
+define form_text_input task2Recall_1
+	set timeout "infinite"
+	set spacing 10
+	set rows "1;1;6"
+	set only_render "no"
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Title"
+	set form_question "In your opinion, what was the purpose of these tasks? If you have no idea, you may answer by typing 'no idea.'"
+	set description "A simple text input form"
+	set cols 1
+	set _theme "gray"
+	widget 0 0 1 1 label text="[form_title]"
+	widget 0 1 1 1 label center=no text="[form_question]"
+	widget 0 2 1 1 text_input focus=yes return_accepts=yes stub="" var="[form_var]"
+
 
