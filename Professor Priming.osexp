@@ -5,7 +5,7 @@ Platform: nt
 ---
 set width 1024
 set uniform_coordinates "yes"
-set title "New experiment"
+set title "Trivia Study"
 set subject_parity "even"
 set subject_nr 0
 set start "experiment"
@@ -35,6 +35,79 @@ define sequence conditions
 	run instructions always
 	run quiz always
 	run demographics always
+	run debriefQuestion1 always
+	run debriefQuestion2 always
+	run debriefQuestion3 always
+	run debriefQuestion4 always
+	run endExperiment always
+
+define form_multiple_choice debriefQuestion1
+	set timeout "infinite"
+	set spacing 10
+	set question "Do you believe that there could be a link between thinking about a university professor and the general knowledge questions? "
+	__options__
+	Yes
+	No
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "no"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_multiple_choice debriefQuestion2
+	set timeout "infinite"
+	set spacing 10
+	set question "Do you believe that there could be a link between thinking about a soccer-hooligan and the general knowledge questions? "
+	__options__
+	Yes
+	No
+	__end__
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Form title"
+	set description "A simple multiple choice item"
+	set button_text "Ok"
+	set allow_multiple "no"
+	set advance_immediately "yes"
+	set _theme "gray"
+
+define form_text_input debriefQuestion3
+	set timeout "infinite"
+	set spacing 10
+	set rows "1;1;6"
+	set only_render "no"
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Title"
+	set form_question "What kind of link? If you have no idea, you may answer with ‘no idea.’"
+	set description "A simple text input form"
+	set cols 1
+	set _theme "gray"
+	widget 0 0 1 1 label text="[form_title]"
+	widget 0 1 1 1 label center=no text="[form_question]"
+	widget 0 2 1 1 text_input focus=yes return_accepts=yes stub="" var="[form_var]"
+
+
+define form_text_input debriefQuestion4
+	set timeout "infinite"
+	set spacing 10
+	set rows "1;1;6"
+	set only_render "no"
+	set margins "50;50;50;50"
+	set form_var "response"
+	set form_title "Title"
+	set form_question "Do you have any further thoughts or comments about the tasks so far?"
+	set description "A simple text input form"
+	set cols 1
+	set _theme "gray"
+	widget 0 0 1 1 label text="[form_title]"
+	widget 0 1 1 1 label center=no text="[form_question]"
+	widget 0 2 1 1 text_input focus=yes return_accepts=yes stub="" var="[form_var]"
+
 
 define form_text_input demoAge
 	set timeout "infinite"
@@ -136,9 +209,27 @@ define sequence demographics
 	run task2Recall always
 	run task2Recall_1 always
 
+define form_text_display endExperiment
+	set timeout "infinite"
+	set spacing 10
+	set rows "1;4;1"
+	set only_render "no"
+	set ok_text "Ok"
+	set margins "50;50;50;50"
+	set form_title "<span size=24>Title</span>"
+	set form_text "Please quietly inform the experimenter that you have completed the tasks."
+	set description "A simple text display form"
+	set cols "1;1;1"
+	set _theme "gray"
+	widget 0 0 3 1 label text="[form_title]"
+	widget 0 1 3 1 label center=no text="[form_text]"
+	widget 1 2 1 1 button text="[ok_text]"
+
+
 define sequence experiment
 	set flush_keyboard "yes"
 	set description "Runs a number of items in sequence"
+	run logger always
 	run setup always
 	run conditions always
 
@@ -217,9 +308,9 @@ define form_text_display instructions
 	widget 1 2 1 1 button text="[ok_text]"
 
 
-define sequence new_sequence
-	set flush_keyboard "yes"
-	set description "Runs a number of items in sequence"
+define logger logger
+	set description "Logs experimental data"
+	set auto_log "yes"
 
 define form_text_input profEntry
 	set timeout 5000
@@ -294,7 +385,7 @@ define form_multiple_choice question1
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -313,7 +404,7 @@ define form_multiple_choice question10
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -332,26 +423,26 @@ define form_multiple_choice question11
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
 define form_multiple_choice question12
 	set timeout "infinite"
 	set spacing 10
-	set question "13.	Which auto manufacturer established Saturn in 1985?"
+	set question "12.	What is the total number of spots on a die?"
 	__options__
-	a.	Mitsubishi
-	b.	Chrysler
-	c.	Ford 
-	d.	General Motors
+	a.	15
+	b.	20
+	c.	25
+	d.	21
 	__end__
 	set margins "50;50;50;50"
 	set form_var "response"
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -370,7 +461,7 @@ define form_multiple_choice question13
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -389,7 +480,7 @@ define form_multiple_choice question14
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -408,7 +499,7 @@ define form_multiple_choice question15
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -427,7 +518,7 @@ define form_multiple_choice question16
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -446,7 +537,7 @@ define form_multiple_choice question17
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -465,7 +556,7 @@ define form_multiple_choice question18
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -484,7 +575,7 @@ define form_multiple_choice question19
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -503,7 +594,7 @@ define form_multiple_choice question2
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -522,7 +613,7 @@ define form_multiple_choice question20
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -541,7 +632,7 @@ define form_multiple_choice question21
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -560,7 +651,7 @@ define form_multiple_choice question22
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -581,7 +672,7 @@ define form_multiple_choice question23
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -600,7 +691,7 @@ define form_multiple_choice question24
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -619,7 +710,7 @@ define form_multiple_choice question25
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -638,7 +729,7 @@ define form_multiple_choice question26
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -659,7 +750,7 @@ define form_multiple_choice question27
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -678,7 +769,7 @@ define form_multiple_choice question28
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -697,7 +788,7 @@ define form_multiple_choice question29
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -716,7 +807,7 @@ define form_multiple_choice question3
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -735,7 +826,7 @@ define form_multiple_choice question30
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -754,7 +845,7 @@ define form_multiple_choice question4
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -773,7 +864,7 @@ define form_multiple_choice question5
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -792,7 +883,7 @@ define form_multiple_choice question6
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -811,7 +902,7 @@ define form_multiple_choice question7
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -830,7 +921,7 @@ define form_multiple_choice question8
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
@@ -849,7 +940,7 @@ define form_multiple_choice question9
 	set form_title "Form title"
 	set description "A simple multiple choice item"
 	set button_text "Ok"
-	set allow_multiple "yes"
+	set allow_multiple "no"
 	set advance_immediately "yes"
 	set _theme "gray"
 
